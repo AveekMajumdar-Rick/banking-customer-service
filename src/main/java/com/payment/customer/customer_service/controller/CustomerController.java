@@ -3,6 +3,7 @@ package com.payment.customer.customer_service.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,7 @@ public class CustomerController {
 		return ResponseEntity.accepted().build();
 	}
 
-	@PutMapping("/customer/details/{customer_id}")
+	@PutMapping("/customer/{customer_id}/details")
 	public ResponseEntity<CustomerDetailsDTO> updateCustomerDetails(@PathVariable("customer_id") int customerId,
 			@RequestBody CustomerDetailsDTO details) throws BadRequestException, DatabaseAccessException {
 		return new ResponseEntity<CustomerDetailsDTO>(customerService.update(customerId, details), HttpStatus.OK);
@@ -46,4 +47,12 @@ public class CustomerController {
 			throws BadRequestException {
 		return new ResponseEntity<CustomerDetailsDTO>(customerService.getDetails(customerId), HttpStatus.OK);
 	}
+	
+	
+	@DeleteMapping("/customer/{customer_id}/details/delete")
+	public ResponseEntity<?> deleteCustomerDetails(@PathVariable("customer_id") int customerId) throws BadRequestException {
+		customerService.delete(customerId);
+		return ResponseEntity.noContent().build();
+	}
+	
 }

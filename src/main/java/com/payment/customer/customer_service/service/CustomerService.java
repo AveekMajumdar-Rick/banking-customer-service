@@ -11,5 +11,7 @@ public interface CustomerService {
 	CustomerDetailsDTO update(int customerId, CustomerDetailsDTO details) throws BadRequestException, DatabaseAccessException;
 
 	CustomerDetailsDTO getDetails(int customerId) throws BadRequestException;
+
+	void delete(int customerId) throws BadRequestException;
 	
 }
