@@ -1,5 +1,5 @@
 # banking-customer-service
-Demo project of Payment gateway configuration
+Demo project of Banking service
 
 ## Architecture
 
